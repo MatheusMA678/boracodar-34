@@ -17,7 +17,7 @@ const userFormSchema = z.object({
 const productFormSchema = z.object({
   product: z.string(),
   quantity: z.number().min(1, { message: "A quantidade não deve ser menor que 1" }),
-  category: z.enum(["fruit", "vegetal", "beef"]),
+  category: z.enum(["Fruta", "Legume", "Objeto"]),
   purchased: z.boolean().optional().default(false)
 })
 
