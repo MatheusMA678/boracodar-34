@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply scrollbar-thin scrollbar-thumb-zinc-800;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply rounded-full ml-1;
+}
+
 body {
   @apply min-h-screen bg-zinc-950 text-zinc-100;
 }

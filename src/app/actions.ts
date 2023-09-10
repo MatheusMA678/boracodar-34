@@ -1,6 +1,7 @@
 "use server"
 
 import { prisma } from "@/services/prisma"
+import { Prisma } from "@prisma/client"
 import { hashSync } from "bcrypt"
 import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
@@ -22,7 +23,7 @@ const productFormSchema = z.object({
 })
 
 export async function createUser(formData: FormData) {
-  const userForm = await userFormSchema.parseAsync({
+  const userForm = userFormSchema.parse({
     name: formData.get("name"),
     email: formData.get("email"),
     password: formData.get("password"),
@@ -69,4 +70,11 @@ export async function createProduct(formData: FormData) {
   } catch (error) {
     console.log(error)
   }
+}
+
+export async function updateProduct(where: Prisma.ProductWhereUniqueInput, data: Prisma.ProductUpdateInput) {
+  await prisma.product.update({
+    where,
+    data
+  })
 }
